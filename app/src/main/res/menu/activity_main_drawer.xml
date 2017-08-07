@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_login"
+            android:title="Logowanie" />
+        <item
+            android:id="@+id/nav_survey"
+            android:title="Ankiety" />
+        <item
+            android:id="@+id/nav_result"
+            android:title="Wyniki" />
+        <item
+            android:id="@+id/nav_statistics"
+            android:title="Statystyki" />
+        <item
+            android:id="@+id/nav_close"
+            android:title="Zamknij" />
+    </group>
+
+</menu>
