@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Instytut Zootechniki");
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity
 
         if(savedInstanceState == null){
             FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().add(R.id.content_frame,new LoginFragment())
-                    .addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
+            fragmentManager.beginTransaction().replace(R.id.content_frame,new LoginFragment())
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
         }
     }
 

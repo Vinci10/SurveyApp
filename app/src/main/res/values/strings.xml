@@ -1,23 +1,10 @@
 <resources>
-    <string name="app_name">Survey</string>
+    <string name="app_name">Instytut Zootechniki</string>
     <string name="hello">Witaj</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-
-    <string-array name="titles">
-        <item>Logowanie</item>
-        <item>Ankiety</item>
-        <item>Wyniki</item>
-        <item>Statystyki</item>
-        <item>Zamknij</item>
-    </string-array>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
