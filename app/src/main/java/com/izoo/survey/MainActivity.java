@@ -16,13 +16,33 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.izoo.survey.model.Answers;
+import com.izoo.survey.model.DatabaseHelper;
+import com.izoo.survey.model.Results;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private DatabaseHelper databaseHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //database
+        databaseHelper = new DatabaseHelper(this);
+
+        try{
+//            Answers a=new Answers("Ala",1);
+//            databaseHelper.addAnswers(a);
+//            Results r=new Results("Ola",1,1);
+//            databaseHelper.addResults(r);
+            databaseHelper.getAllToDosByTag(1);
+        }finally {
+            databaseHelper.close();
+        }
+
+        //database end
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
