@@ -1,5 +1,8 @@
 package com.izoo.survey;
 
+import android.app.Activity;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,31 +18,35 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 
-import com.izoo.survey.model.Answers;
 import com.izoo.survey.model.DatabaseHelper;
-import com.izoo.survey.model.Results;
+import com.izoo.survey.model.Users;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        LoginFragment.LoginListener,
+        LogoutFragment.LogoutListener {
 
-    private DatabaseHelper databaseHelper;
+    private static Users loggedUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //database
-        databaseHelper = new DatabaseHelper(this);
+        //databaseHelper = new DatabaseHelper(this);
 
-        try{
+       // try{
 //            Answers a=new Answers("Ala",1);
 //            databaseHelper.addAnswers(a);
 //            Results r=new Results("Ola",1,1);
 //            databaseHelper.addResults(r);
-            databaseHelper.getAllToDosByTag(1);
-        }finally {
-            databaseHelper.close();
-        }
+        //    databaseHelper.getAllToDosByTag(1);
+       // }finally {
+            //databaseHelper.close();
+        //}
 
         //database end
 
@@ -109,19 +116,20 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         Fragment fragment = new Fragment();
-        if (id == R.id.nav_login) {
-            fragment = new LoginFragment();
-        } else if (id == R.id.nav_survey) {
-            fragment = new SurveyFragment();
-        } else if (id == R.id.nav_result) {
-            fragment = new ResultFragment();
-        } else if (id == R.id.nav_statistics) {
-            fragment = new StatisticsFragment();
-        } else if (id == R.id.nav_close) {
-            System.exit(0);
-        } else{
-            fragment = new LoginFragment();
+        if(loggedUser != null && id != R.id.nav_close){
+            if (id == R.id.nav_login) {
+                fragment = new LogoutFragment();
+            } else if (id == R.id.nav_survey) {
+                fragment = new SurveyFragment();
+            } else if (id == R.id.nav_result) {
+                fragment = new ResultFragment();
+            } else {
+                fragment = new StatisticsFragment();
+            }
         }
+        else if(loggedUser == null && id != R.id.nav_close) fragment = new LoginFragment();
+        else System.exit(0);
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame,fragment)
                 .addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
@@ -130,4 +138,43 @@ public class MainActivity extends AppCompatActivity
         getSupportActionBar().setTitle(item.getTitle());
         return true;
     }
+
+    @Override
+    public void loginButtonClicked(String login, String password){
+        SQLiteOpenHelper databaseHelper = new DatabaseHelper(this);
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+        loggedUser = DatabaseHelper.checkUser(db,login,password);
+        if(loggedUser == null){
+            TextView error = (TextView) findViewById(R.id.error_message);
+            error.setText("Nieprawidłowy login lub hasło");
+        }
+        else{
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_frame,new SurveyFragment())
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
+            getSupportActionBar().setTitle("Ankiety");
+        }
+        hideSoftKeyboard(this);
+    }
+
+    public static String getLoggedUserLogin(){
+        return loggedUser.getLogin();
+    }
+    public void logout(){
+        loggedUser = null;
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        int count = fragmentManager.getBackStackEntryCount();
+        for(int i = 0; i < count; ++i) fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        fragmentManager.beginTransaction().replace(R.id.content_frame,new LoginFragment())
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
+    }
+
+    public static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager =
+                (InputMethodManager) activity.getSystemService(
+                        Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(
+                activity.getCurrentFocus().getWindowToken(), 0);
+    }
+
 }

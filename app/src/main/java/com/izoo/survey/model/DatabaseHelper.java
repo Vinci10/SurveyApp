@@ -228,7 +228,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(cdb.addQuestionInSection);
         db.execSQL(cdb.addSurveyInSection);
         db.execSQL(cdb.addSurveyUsers);
-
+        db.execSQL(cdb.addUser1);
     }
 
     @Override
@@ -294,7 +294,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public List<Survey> getAllToDosByTag(int id) {
-        List<Survey> survey = new ArrayList<Survey>();
+        List<Survey> survey = new ArrayList<>();
 
         String selectQuery = "select * from "+
                 TABLE_Survey+ " where " + KEY_ID_Survey+"=="+id;
@@ -318,6 +318,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 //        }
 
         return survey;
+    }
+    public static Users checkUser(SQLiteDatabase db , String login, String password){
+        Cursor cursor = db.query(TABLE_Users,
+                new String[]{KEY_ID_User, KEY_Login,KEY_Password, KEY_ID_Type_Users},
+                KEY_Login + " = ? AND " + KEY_Password + " = ?",
+                new String[]{login,password},
+                null,null,null);
+        if (cursor.getCount() > 0){
+            cursor.moveToFirst();
+            return new Users(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3));
+        }
+        return null;
     }
 
 }

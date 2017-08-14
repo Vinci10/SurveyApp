@@ -8,6 +8,7 @@ public class CreateDataBase {
 
     public String addTypeUser = "Insert into Type_Users values (1, 'User'), (2,'Anonymous')";
     public String addUser = "Insert into Users values (1, 'Mateo','alamakota',1)";
+    public String addUser1 = "Insert into Users values (2, 'test','test',2)";
     public String addSurvey = "Insert into Survey values (1, 'Ankieta Konsumencka','2017-08-10 01:25:00','2017-08-10 01:25:00')";
     public String addSection = "Insert into Section values (1, 'Informacje o respondencie',1),(2,'Ankieta',2)";
     public String addTypeAnswer = "Insert into Type_Answers values (1, 'Wielokrotnego'),(2,'Jednokrotnego'),(3,'Otwarta')";
