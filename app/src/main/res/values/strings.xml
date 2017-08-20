@@ -7,7 +7,15 @@
 
     <string name="action_settings">Settings</string>
     <string name="login">Zaloguj</string>
+    <string name="login_text">Login</string>
+    <string name="required">*Wymagane</string>
 
     <string name="logout_button">Wyloguj</string>
+    <string-array name="titles">
+        <item>Logowanie</item>
+        <item>Ankiety</item>
+        <item>Wyniki</item>
+        <item>Statystyki</item>
+    </string-array>
 
 </resources>

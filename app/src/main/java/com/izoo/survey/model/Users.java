@@ -1,16 +1,14 @@
 package com.izoo.survey.model;
 
-import java.net.PasswordAuthentication;
-
 /**
  * Created by mateusz on 07.08.17.
  */
 
 public class Users {
-    int ID_User;
-    String Login;
-    String Password;
-    int ID_Type_Users;
+    private int ID_User;
+    private String Login;
+    private String Password;
+    private int ID_Type_Users;
 
     // constructors
     public Users() {

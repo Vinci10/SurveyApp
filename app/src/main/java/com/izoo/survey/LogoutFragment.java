@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.izoo.survey.model.Users;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,15 +31,18 @@ public class LogoutFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_logout, container, false);
-        Button logoutButton = (Button) view.findViewById(R.id.logout_button);
-        TextView loginMessage = (TextView) view.findViewById(R.id.login_message);
-        loginMessage.setText("Jesteś zalogowany jako: "+ MainActivity.getLoggedUserLogin());
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(listener != null) listener.logout();
-            }
-        });
+        Users user = MainActivity.getLoggedUser();
+        if(user != null ){
+            Button logoutButton = (Button) view.findViewById(R.id.logout_button);
+            TextView loginMessage = (TextView) view.findViewById(R.id.login_message);
+            loginMessage.setText("Jesteś zalogowany jako: "+ MainActivity.getLoggedUser().getLogin());
+            logoutButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(listener != null) listener.logout();
+                }
+            });
+        }
         return view;
     }
     @Override

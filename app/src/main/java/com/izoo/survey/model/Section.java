@@ -1,21 +1,24 @@
 package com.izoo.survey.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by mateusz on 08.08.17.
  */
 
 public class Section {
-    int ID_Section;
-    String Name;
-    int Sequence;
+    private int ID_Section;
+    private String Name;
+    private List<Question> questions;
 
     public Section() {
     }
 
-    public Section(int ID_Section, String name, int sequence) {
+    public Section(int ID_Section, String name, List<Question> questions) {
         this.ID_Section = ID_Section;
         Name = name;
-        Sequence = sequence;
+        this.questions = questions;
     }
 
     public int getID_Section() {
@@ -30,15 +33,9 @@ public class Section {
         return Name;
     }
 
-    public void setName(String name) {
-        Name = name;
-    }
+    public void setName(String name) {Name = name;}
 
-    public int getSequence() {
-        return Sequence;
-    }
+    public List<Question> getQuestions() {return questions;}
 
-    public void setSequence(int sequence) {
-        Sequence = sequence;
-    }
+    public void setQuestions(List<Question> questions) {this.questions = questions;}
 }

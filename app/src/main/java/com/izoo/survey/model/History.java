@@ -8,67 +8,48 @@ import java.util.Date;
  */
 
 class History {
-    int ID_History;
-    Date Date_Hour;
-    int  ID_User;
-    int ID_Survey;
-    int Order_Number;
+    private int id_History;
+    private Date date_Hour;
+    private int  id_User;
+    private int id_Survey;
 
     public History() {
     }
 
-    public History(int ID_History, Date date_Hour, int ID_User, int ID_Survey, int order_Number) {
-        this.ID_History = ID_History;
-        Date_Hour = date_Hour;
-        this.ID_User = ID_User;
-        this.ID_Survey = ID_Survey;
-        Order_Number = order_Number;
+    public History(int ID_History, Date Date_Hour, int ID_User, int ID_Survey) {
+        id_History = ID_History;
+        date_Hour = Date_Hour;
+        id_User = ID_User;
+        id_Survey = ID_Survey;
     }
 
-    public History(Date date_Hour, int ID_User, int ID_Survey, int order_Number) {
-        Date_Hour = date_Hour;
-        this.ID_User = ID_User;
-        this.ID_Survey = ID_Survey;
-        Order_Number = order_Number;
+    public int getId_History() {
+        return id_History;
     }
 
-    public int getID_History() {
-        return ID_History;
-    }
-
-    public void setID_History(int ID_History) {
-        this.ID_History = ID_History;
+    public void setId_History(int ID_History) {
+        id_History = ID_History;
     }
 
     public Date getDate_Hour() {
-        return Date_Hour;
+        return date_Hour;
     }
 
-    public void setDate_Hour(Date date_Hour) {
-        Date_Hour = date_Hour;
+    public void setDate_Hour(Date Date_Hour) {
+        date_Hour = Date_Hour;
     }
 
-    public int getID_User() {
-        return ID_User;
+    public int getId_User() {
+        return id_User;
     }
 
-    public void setID_User(int ID_User) {
-        this.ID_User = ID_User;
+    public void setId_User(int ID_User) {
+        id_User = ID_User;
     }
 
-    public int getID_Survey() {
-        return ID_Survey;
-    }
+    public int getId_Survey() {return id_Survey; }
 
-    public void setID_Survey(int ID_Survey) {
-        this.ID_Survey = ID_Survey;
-    }
-
-    public int getOrder_Number() {
-        return Order_Number;
-    }
-
-    public void setOrder_Number(int order_Number) {
-        Order_Number = order_Number;
+    public void setId_Survey(int ID_Survey) {
+        id_Survey = ID_Survey;
     }
 }

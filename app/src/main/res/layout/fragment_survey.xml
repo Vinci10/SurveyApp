@@ -1,13 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="horizontal"
-    android:padding="15dp">
-    <ListView
-        android:id="@android:id/list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </ListView>
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="10dp">
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_width="match_parent">
+
+        <TextView
+            android:id="@+id/survey_name"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:paddingBottom="10dp" />
+
+        <TextView
+            android:id="@+id/required_message"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="10sp"
+            android:textColor="@color/errorColor"
+            android:text="@string/required"/>
+
+        <ScrollView
+            android:layout_height="match_parent"
+            android:id="@+id/scrollView1"
+            android:layout_width="match_parent">
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+            </LinearLayout>
+
+        </ScrollView>
+    </LinearLayout>
 </LinearLayout>

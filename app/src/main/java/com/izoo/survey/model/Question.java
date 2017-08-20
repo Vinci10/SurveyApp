@@ -1,37 +1,34 @@
 package com.izoo.survey.model;
 
+import java.util.List;
+
 /**
  * Created by mateusz on 08.08.17.
  */
 
 public class Question {
-    int ID_Question;
-    String Text_Question;
-    boolean Required;
-    int Sequence;
-    String Tips;
-    int ID_Section;
-    int ID_Type_Answers;
+    private int ID_Question;
+    private String Text_Question;
+    private int Required;
+    private String Tips;
+    private String Type_Answers;
+    private List<Answers> availableAnswers;
+    private List<Integer> providedAnswers;
+    private String openAnswer;
+
 
     public Question() {
     }
 
-    public Question(int ID_Question, String text_Question, boolean required, int sequence, String tips) {
+    public Question(int ID_Question, String text_Question, int required, String tips, String type_Answers, List<Answers> AvailableAnswers) {
         this.ID_Question = ID_Question;
         Text_Question = text_Question;
         Required = required;
-        Sequence = sequence;
         Tips = tips;
-    }
-
-    public Question(int ID_Question, String text_Question, boolean required, int sequence, String tips, int ID_Section, int ID_Type_Answers) {
-        this.ID_Question = ID_Question;
-        Text_Question = text_Question;
-        Required = required;
-        Sequence = sequence;
-        Tips = tips;
-        this.ID_Section = ID_Section;
-        this.ID_Type_Answers = ID_Type_Answers;
+        availableAnswers = AvailableAnswers;
+        Type_Answers = type_Answers;
+        openAnswer = null;
+        providedAnswers = null;
     }
 
     public int getID_Question() {
@@ -50,20 +47,12 @@ public class Question {
         Text_Question = text_Question;
     }
 
-    public boolean isRequired() {
+    public int isRequired() {
         return Required;
     }
 
-    public void setRequired(boolean required) {
+    public void setRequired(int required) {
         Required = required;
-    }
-
-    public int getSequence() {
-        return Sequence;
-    }
-
-    public void setSequence(int sequence) {
-        Sequence = sequence;
     }
 
     public String getTips() {
@@ -74,19 +63,21 @@ public class Question {
         Tips = tips;
     }
 
-    public int getID_Section() {
-        return ID_Section;
+    public String getType_Answers() {
+        return Type_Answers;
     }
 
-    public void setID_Section(int ID_Section) {
-        this.ID_Section = ID_Section;
-    }
+    public void setType_Answers(String Type_Answers) {this.Type_Answers = Type_Answers;}
 
-    public int getID_Type_Answers() {
-        return ID_Type_Answers;
-    }
+    public List<Answers> getAvailableAnswers() {return availableAnswers;}
 
-    public void setID_Type_Answers(int ID_Type_Answers) {
-        this.ID_Type_Answers = ID_Type_Answers;
-    }
+    public void setAvailableAnswers(List<Answers> availableAnswers) {this.availableAnswers = availableAnswers;}
+
+    public List<Integer> getProvidedAnswers() {return providedAnswers;}
+
+    public void setProvidedAnswers(List<Integer> providedAnswers) {this.providedAnswers = providedAnswers;}
+
+    public String getOpenAnswer() {return openAnswer;}
+
+    public void setOpenAnswer(String openAnswer) {this.openAnswer = openAnswer;}
 }
