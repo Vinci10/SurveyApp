@@ -1,6 +1,5 @@
 package com.izoo.survey.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,9 +10,6 @@ public class Section {
     private int ID_Section;
     private String Name;
     private List<Question> questions;
-
-    public Section() {
-    }
 
     public Section(int ID_Section, String name, List<Question> questions) {
         this.ID_Section = ID_Section;

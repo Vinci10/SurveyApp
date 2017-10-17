@@ -9,9 +9,6 @@
             android:id="@+id/nav_survey"
             android:title="Ankiety" />
         <item
-            android:id="@+id/nav_result"
-            android:title="Wyniki" />
-        <item
             android:id="@+id/nav_statistics"
             android:title="Statystyki" />
         <item

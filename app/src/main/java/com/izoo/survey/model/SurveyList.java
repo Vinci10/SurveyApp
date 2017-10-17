@@ -1,41 +1,44 @@
 package com.izoo.survey.model;
 
 
+import java.util.List;
+
 public class SurveyList {
-    private int _id;
-    private String name;
-    private String date;
+
+    private Survey survey;
+    private List<History> histories;
+    private int lpAll;
     private int lp;
 
-    public SurveyList(int _id, String name, String date, int lp) {
-        this._id = _id;
-        this.name = name;
-        this.date = date;
+    public SurveyList(Survey survey, List<History> histories, int lpAll, int lp) {
+        this.survey = survey;
+        this.histories = histories;
+        this.lpAll = lpAll;
         this.lp = lp;
     }
 
-    public int get_id() {
-        return _id;
+    public Survey getSurvey() {
+        return survey;
     }
 
-    public void set_id(int _id) {
-        this._id = _id;
+    public void setSurvey(Survey survey) {
+        this.survey = survey;
     }
 
-    public String getName() {
-        return name;
+    public List<History> getHistories() {
+        return histories;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setHistories(List<History> histories) {
+        this.histories = histories;
     }
 
-    public String getDate() {
-        return date;
+    public int getLpAll() {
+        return lpAll;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setLpAll(int lpAll) {
+        this.lpAll = lpAll;
     }
 
     public int getLp() {

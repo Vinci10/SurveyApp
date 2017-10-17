@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Instytut Zootechniki</string>
+    <string name="app_name">SurveyApp</string>
     <string name="hello">Witaj</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -9,13 +9,16 @@
     <string name="login">Zaloguj</string>
     <string name="login_text">Login</string>
     <string name="required">*Wymagane</string>
+    <string name="haslo">Hasło</string>
 
     <string name="logout_button">Wyloguj</string>
     <string-array name="titles">
         <item>Logowanie</item>
         <item>Ankiety</item>
-        <item>Wyniki</item>
         <item>Statystyki</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

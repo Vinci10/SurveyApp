@@ -1,5 +1,8 @@
 package com.izoo.survey.model;
 
+import android.graphics.Color;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.widget.BaseAdapter;
 import android.widget.Filterable;
 import android.content.Context;
@@ -98,7 +101,6 @@ public class ListAdapter<T> extends BaseAdapter implements Filterable {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        SurveyList surveyList = (SurveyList) getItem(position);
         if( convertView == null )
         {
             LayoutInflater inflater =
@@ -107,13 +109,21 @@ public class ListAdapter<T> extends BaseAdapter implements Filterable {
             convertView = inflater.inflate(layout, parent, false);
         }
 
-        TextView name = (TextView) convertView.findViewById(R.id.name);
-        TextView date = (TextView) convertView.findViewById(R.id.date);
-        TextView lp = (TextView) convertView.findViewById(R.id.lp);
-        name.setText(surveyList.getName());
-        date.setText(surveyList.getDate().toString());
-        lp.setText("lp." + Integer.toString(surveyList.getLp()));
-
+        if(getItem(position) instanceof SurveyList){
+            SurveyList surveyList = (SurveyList) getItem(position);
+            TextView name = (TextView) convertView.findViewById(R.id.name);
+            TextView date = (TextView) convertView.findViewById(R.id.date);
+            TextView lp = (TextView) convertView.findViewById(R.id.lp);
+            if(surveyList.getSurvey().isAnonymous() == 0){
+                name.setText(surveyList.getSurvey().getName());
+                lp.setText("lp." + Integer.toString(surveyList.getLp()));
+            }else{
+                SpannableString text = new SpannableString(surveyList.getSurvey().getName()+ " (A)");
+                text.setSpan(new ForegroundColorSpan(Color.RED), text.length()-3,text.length(),0);
+                name.setText(text);
+            }
+            date.setText(surveyList.getSurvey().getDate_Create().toString());
+        }
         return convertView;
     }
 }

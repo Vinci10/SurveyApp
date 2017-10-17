@@ -8,27 +8,15 @@ public class Users {
     private int ID_User;
     private String Login;
     private String Password;
-    private int ID_Type_Users;
+    private String Type_Users;
 
     // constructors
-    public Users() {
-    }
-
-    public Users(String Login, String Password) {
-        this.Login=Login;
-        this.Password=Password;
-    }
 
     public Users(int id, String Login, String Password) {
         this.ID_User=id;
         this.Login=Login;
         this.Password=Password;
-    }
-    public Users(int id, String Login, String Password, int ID_Type_Users) {
-        this.ID_User=id;
-        this.Login=Login;
-        this.Password=Password;
-        this.ID_Type_Users=ID_Type_Users;
+        Type_Users = null;
     }
 
     public int getID_User() {
@@ -55,11 +43,11 @@ public class Users {
         Password = password;
     }
 
-    public int getID_Type_Users() {
-        return ID_Type_Users;
+    public String getType_Users() {
+        return Type_Users;
     }
 
-    public void setID_Type_Users(int ID_Type_Users) {
-        this.ID_Type_Users = ID_Type_Users;
+    public void setType_Users(String Type_Users) {
+        this.Type_Users = Type_Users;
     }
 }

@@ -11,24 +11,18 @@ public class Question {
     private String Text_Question;
     private int Required;
     private String Tips;
-    private String Type_Answers;
-    private List<Answers> availableAnswers;
-    private List<Integer> providedAnswers;
-    private String openAnswer;
+    private String Type_Question;
+    private List<Answers_To_Question> availableAnswers;
+    private List<Answers_To_Question> givenAnswers;
 
-
-    public Question() {
-    }
-
-    public Question(int ID_Question, String text_Question, int required, String tips, String type_Answers, List<Answers> AvailableAnswers) {
+    public Question(int ID_Question, String text_Question, int required, String tips, String type_Question, List<Answers_To_Question> AvailableAnswers) {
         this.ID_Question = ID_Question;
         Text_Question = text_Question;
         Required = required;
         Tips = tips;
         availableAnswers = AvailableAnswers;
-        Type_Answers = type_Answers;
-        openAnswer = null;
-        providedAnswers = null;
+        Type_Question = type_Question;
+        givenAnswers = null;
     }
 
     public int getID_Question() {
@@ -63,21 +57,39 @@ public class Question {
         Tips = tips;
     }
 
-    public String getType_Answers() {
-        return Type_Answers;
+    public String getType_Question() {return Type_Question;}
+
+    public void setType_Question(String type_Question) {Type_Question = type_Question;}
+
+    public List<Answers_To_Question> getAvailableAnswers() {return availableAnswers;}
+
+    public void setAvailableAnswers(List<Answers_To_Question> availableAnswers) {this.availableAnswers = availableAnswers;}
+
+    public List<Answers_To_Question> getGivenAnswers() {return givenAnswers;}
+
+    public void setGivenAnswers(List<Answers_To_Question> givenAnswers) {this.givenAnswers = givenAnswers;}
+
+    public Answers_To_Question getGivenAnswer(int id){
+        if(givenAnswers != null){
+            for (Answers_To_Question a: givenAnswers){
+                if(a.getId_Answers_To_Question() == id) return a;
+            }
+        }
+        return null;
     }
 
-    public void setType_Answers(String Type_Answers) {this.Type_Answers = Type_Answers;}
+    public Answers_To_Question getAnswer(int id){
+        for(Answers_To_Question a: availableAnswers){
+            if(a.getId_Answers_To_Question() == id) return a;
+        }
+        return null;
+    }
 
-    public List<Answers> getAvailableAnswers() {return availableAnswers;}
-
-    public void setAvailableAnswers(List<Answers> availableAnswers) {this.availableAnswers = availableAnswers;}
-
-    public List<Integer> getProvidedAnswers() {return providedAnswers;}
-
-    public void setProvidedAnswers(List<Integer> providedAnswers) {this.providedAnswers = providedAnswers;}
-
-    public String getOpenAnswer() {return openAnswer;}
-
-    public void setOpenAnswer(String openAnswer) {this.openAnswer = openAnswer;}
+    public int countGivenAsnwers(){
+        int count = 0;
+        for(Answers_To_Question answer: availableAnswers){
+            count += answer.getSummaryAmountAnswers();
+        }
+        return count;
+    }
 }
